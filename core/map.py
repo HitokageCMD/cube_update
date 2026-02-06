@@ -2,6 +2,13 @@ import pygame
 import random
 import math
 import os
+import sys
+
+# Ensure project root is on sys.path when running this file directly.
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 import config.game_config as settings
 from entities.interactables import Chest
 from utils.resource_manager import resource_manager
@@ -341,7 +348,7 @@ class MapManager:
         if (cx, cy) in self.active_chunks:
             return self.active_chunks[(cx, cy)]
         
-        chunk = Chunk(cx, cy, self.chunk_size, map_manager=self)
+        chunk = Chunk(cx, cy, self.chunk_size, grid_size=self.grid_size, map_manager=self)
         chunk.generate_ground()
         self.generate_obstacles(chunk)
         return chunk
@@ -477,14 +484,14 @@ class MapManager:
     def draw(self, surface, camera):
         # Draw Ground First
         for chunk in self.active_chunks.values():
-            screen_x = round(chunk.start_x * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH / 2)
-            screen_y = round(chunk.start_y * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT / 2)
+            screen_x = math.floor(chunk.start_x * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH / 2)
+            screen_y = math.floor(chunk.start_y * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT / 2)
             
-            next_screen_x = round((chunk.start_x + chunk.chunk_size) * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH / 2)
-            next_screen_y = round((chunk.start_y + chunk.chunk_size) * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT / 2)
+            next_screen_x = math.ceil((chunk.start_x + chunk.chunk_size) * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH / 2)
+            next_screen_y = math.ceil((chunk.start_y + chunk.chunk_size) * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT / 2)
             
-            screen_w = next_screen_x - screen_x
-            screen_h = next_screen_y - screen_y
+            screen_w = (next_screen_x - screen_x) + 1
+            screen_h = (next_screen_y - screen_y) + 1
             
             if (screen_x + screen_w > 0 and screen_x < settings.SCREEN_WIDTH and
                 screen_y + screen_h > 0 and screen_y < settings.SCREEN_HEIGHT):
