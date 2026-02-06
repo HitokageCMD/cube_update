@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-02-03 06:25:42",
+  "char_id": "triangle",
+  "char_name": "三角形",
+  "level": 1,
+  "stats": {
+    "max_hp": 100,
+    "hp_regen": 0.5,
+    "max_mp": 80,
+    "mp_regen": 0.8,
+    "attack_speed": 1.5,
+    "attack_range": 300,
+    "damage": 12,
+    "crit_damage": 2.0,
+    "crit_chance": 10,
+    "luck": 5,
+    "block_chance": 0,
+    "max_block_chance": 0
+  },
+  "current_hp": 100,
+  "current_mp": 68.19999999999999,
+  "pos": [
+    504.7358656589656,
+    -42.44861479260176
+  ],
+  "inventory": [
+    "HP药水",
+    "木剑",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "camera_pos": [
+    504.7376782279839,
+    -42.45094609910925
+  ]
+}

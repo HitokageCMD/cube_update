@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-02-03 23:21:40",
+  "char_id": "square",
+  "char_name": "坚毅方块",
+  "level": 1,
+  "current_xp": 0,
+  "xp_to_next_level": 100,
+  "stats": {
+    "max_hp": 120,
+    "max_mp": 50,
+    "phys_atk": 10,
+    "magic_atk": 0,
+    "phys_def": 5,
+    "magic_def": 2,
+    "phys_pen": 0,
+    "magic_pen": 0,
+    "true_dmg": 0,
+    "pickup_range": 100,
+    "move_speed": 280,
+    "attack_speed": 1.0,
+    "attack_range": 60,
+    "crit_chance": 5,
+    "hp_regen": 1,
+    "mp_regen": 1,
+    "luck": 0,
+    "collision_damage_reduction": 5
+  },
+  "current_hp": 120,
+  "current_mp": 50,
+  "pos": [
+    160.17265653138708,
+    -30.812656531387034
+  ],
+  "inventory": [
+    "HP药水",
+    "木剑",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "equipment": {
+    "head": null,
+    "body": null,
+    "hand_l": null,
+    "hand_r": null,
+    "leg_l": null,
+    "leg_r": null,
+    "special_1": null,
+    "special_2": null,
+    "special_3": null
+  },
+  "cells": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "camera_pos": [
+    160.17254964774003,
+    -30.81258727245577
+  ],
+  "enemies": [
+    {
+      "x": 349.8610092024242,
+      "y": -367.9946712981151,
+      "type": "triangle",
+      "hp": 22.14622666666667,
+      "max_hp": 22.14622666666667
+    },
+    {
+      "x": 131.21768883021747,
+      "y": 667.377234986081,
+      "type": "triangle",
+      "hp": 22.292233333333336,
+      "max_hp": 22.292233333333336
+    }
+  ]
+}

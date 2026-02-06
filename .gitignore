@@ -1,0 +1,42 @@
+# ======================
+# Python
+# ======================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# 虚拟环境（如果你以后用）
+venv/
+.env/
+
+# ======================
+# Build / Release（重点）
+# ======================
+build/
+dist/
+releases/
+output/
+
+# 常见打包产物
+*.exe
+*.pkg
+*.msi
+*.zip
+*.rar
+*.7z
+
+build/
+releases/
+*.exe
+*.pkg
+*.rar
+
+# ======================
+# 编辑器 / 系统杂项
+# ======================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

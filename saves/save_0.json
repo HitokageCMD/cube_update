@@ -1,0 +1,140 @@
+{
+  "timestamp": "2026-02-06 03:05:13",
+  "game_time": 10.523,
+  "char_id": "square",
+  "char_name": "坚毅方块",
+  "level": 1,
+  "current_xp": 10.100782828282828,
+  "xp_to_next_level": 100,
+  "stats": {
+    "max_hp": 120,
+    "phys_atk": 10,
+    "magic_atk": 0,
+    "phys_def": 7,
+    "magic_def": 4,
+    "phys_pen": 0,
+    "magic_pen": 0,
+    "true_dmg": 0,
+    "pickup_range": 100,
+    "max_mp": 50,
+    "attack_speed": 1.0,
+    "move_speed": 280,
+    "attack_range": 250,
+    "skill_range": 0,
+    "crit_chance": 5,
+    "damage_bonus": 0,
+    "hp_regen": 2,
+    "mp_regen": 1,
+    "skill_haste": 0,
+    "luck": 0,
+    "collision_damage_reduction": 5,
+    "collision_dmg_pct": 0,
+    "skill_haste_cap": 80,
+    "crit_dmg": 200,
+    "piercing_count": 0
+  },
+  "current_hp": 99,
+  "current_mp": 50,
+  "pos": [
+    441.6386327800838,
+    -109.05197656615806
+  ],
+  "inventory": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "equipment": {
+    "head": null,
+    "body": null,
+    "hand_l": null,
+    "hand_r": null,
+    "leg_l": null,
+    "leg_r": null,
+    "special_1": null,
+    "special_2": null,
+    "special_3": null
+  },
+  "cells": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "skill_slots": [
+    {
+      "id": "skill_dash",
+      "count": 1,
+      "devour_progress": 0,
+      "awakened_level": 0
+    },
+    null,
+    null,
+    null
+  ],
+  "inventory_state": {
+    "gene_unlocked": false,
+    "heart_slot": null
+  },
+  "destruction_count": 0,
+  "camera_pos": [
+    440.0972996942032,
+    -106.6267194457077
+  ],
+  "enemies": [
+    {
+      "x": 390.62366993785946,
+      "y": -115.58208265344513,
+      "type": "square",
+      "hp": 1.1664999999999992,
+      "max_hp": 33.1665
+    },
+    {
+      "x": 491.1282697351889,
+      "y": -51.55737849450458,
+      "type": "square",
+      "hp": 33.49883333333334,
+      "max_hp": 33.49883333333334
+    },
+    {
+      "x": 586.2076690810877,
+      "y": -449.6229090135743,
+      "type": "triangle",
+      "hp": 22.442888888888895,
+      "max_hp": 22.442888888888895
+    },
+    {
+      "x": 1085.4973151444776,
+      "y": -130.6792391762605,
+      "type": "circle",
+      "hp": 16.998863125000003,
+      "max_hp": 16.998863125000003
+    }
+  ]
+}
