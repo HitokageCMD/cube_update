@@ -6,6 +6,16 @@ import random
 import json
 import datetime
 
+# Ensure project root is on sys.path when running this file directly.
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
+# Ensure project root is on sys.path when running this file directly.
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 import config.game_config as settings
 from config.game_config import GameState, CHARACTERS, game_config, save_config, DEFAULT_CONFIG, MOUSE_LEFT, MOUSE_RIGHT, MOUSE_MIDDLE
 from entities.player import Player
@@ -1148,7 +1158,6 @@ class GameManager:
         ]
         
         if self.state in draw_world_states:
-            self.camera.draw_grid(self.screen)
             self.map_manager.draw(self.screen, self.camera)
             
             if self.player:

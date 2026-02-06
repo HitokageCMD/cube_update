@@ -1,4 +1,12 @@
+import os
+import sys
 import pygame
+
+# Ensure project root is on sys.path when running this file directly.
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 import config.game_config as settings
 from utils.sound_manager import SoundManager
 from utils.resource_manager import resource_manager
@@ -45,10 +53,19 @@ class Camera:
         
         grid_color = get_theme_color('grid')
         
+        screen_center_x = settings.SCREEN_WIDTH / 2
+        screen_center_y = settings.SCREEN_HEIGHT / 2
+        
         for x in range(int(offset_x) - grid_size, settings.SCREEN_WIDTH + grid_size, grid_size):
+            # Skip the center vertical line to remove the crosshair look
+            if abs(x - screen_center_x) < 1:
+                continue
             pygame.draw.line(surface, grid_color, (x, 0), (x, settings.SCREEN_HEIGHT), 2)
             
         for y in range(int(offset_y) - grid_size, settings.SCREEN_HEIGHT + grid_size, grid_size):
+            # Skip the center horizontal line to remove the crosshair look
+            if abs(y - screen_center_y) < 1:
+                continue
             pygame.draw.line(surface, grid_color, (0, y), (settings.SCREEN_WIDTH, y), 2)
             
         # 绘制原点标记

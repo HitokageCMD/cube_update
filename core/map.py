@@ -22,6 +22,7 @@ class Chunk:
         self.surface = None # Base generated surface (High Res)
         self.cached_surface = None # Scaled surface for current zoom
         self.cached_zoom = -1
+        self.cached_size = None
         self.start_x = cx * chunk_size
         self.start_y = cy * chunk_size
         self.map_manager = map_manager
@@ -40,6 +41,8 @@ class Chunk:
     def generate_ground(self):
         """Generates the ground texture for this chunk using auto-tiling."""
         self.surface = pygame.Surface((self.chunk_size, self.chunk_size))
+        # Pre-fill to avoid black seams on unused pixels.
+        self.surface.fill((106, 190, 48))
         cols = self.chunk_size // self.grid_size
         rows = self.chunk_size // self.grid_size
         
@@ -178,12 +181,16 @@ class Chunk:
         if is_overlay(s) and is_overlay(w): self.surface.blit(load_tile(f"{prefix}_NE"), (x, y))
         if is_overlay(s) and is_overlay(e): self.surface.blit(load_tile(f"{prefix}_NW"), (x, y))
 
-    def get_draw_surface(self, zoom):
-        """Returns a cached surface scaled to the current zoom level."""
-        if self.cached_surface is None or abs(self.cached_zoom - zoom) > 0.001:
+    def get_draw_surface(self, zoom, target_w, target_h):
+        """Returns a cached surface scaled to the target size."""
+        if (
+            self.cached_surface is None
+            or abs(self.cached_zoom - zoom) > 0.001
+            or self.cached_size != (target_w, target_h)
+        ):
             self.cached_zoom = zoom
-            target_size = int(self.chunk_size * zoom) + 2 # +2 overlap baked in
-            self.cached_surface = pygame.transform.scale(self.surface, (target_size, target_size))
+            self.cached_size = (target_w, target_h)
+            self.cached_surface = pygame.transform.scale(self.surface, (target_w, target_h))
         return self.cached_surface
 
 class Obstacle:
@@ -470,11 +477,11 @@ class MapManager:
     def draw(self, surface, camera):
         # Draw Ground First
         for chunk in self.active_chunks.values():
-            screen_x = math.floor(chunk.start_x * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH/2)
-            screen_y = math.floor(chunk.start_y * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT/2)
+            screen_x = round(chunk.start_x * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH / 2)
+            screen_y = round(chunk.start_y * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT / 2)
             
-            next_screen_x = math.floor((chunk.start_x + chunk.chunk_size) * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH/2)
-            next_screen_y = math.floor((chunk.start_y + chunk.chunk_size) * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT/2)
+            next_screen_x = round((chunk.start_x + chunk.chunk_size) * camera.zoom - camera.pos.x * camera.zoom + settings.SCREEN_WIDTH / 2)
+            next_screen_y = round((chunk.start_y + chunk.chunk_size) * camera.zoom - camera.pos.y * camera.zoom + settings.SCREEN_HEIGHT / 2)
             
             screen_w = next_screen_x - screen_x
             screen_h = next_screen_y - screen_y
@@ -482,7 +489,9 @@ class MapManager:
             if (screen_x + screen_w > 0 and screen_x < settings.SCREEN_WIDTH and
                 screen_y + screen_h > 0 and screen_y < settings.SCREEN_HEIGHT):
                 
-                cached_surf = chunk.get_draw_surface(camera.zoom)
+                screen_w = max(1, screen_w)
+                screen_h = max(1, screen_h)
+                cached_surf = chunk.get_draw_surface(camera.zoom, screen_w, screen_h)
                 surface.blit(cached_surf, (screen_x, screen_y))
 
         # Draw Obstacles
